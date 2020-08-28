@@ -547,22 +547,38 @@ public class Hello {
 		
 ///////////////////////////////////////////////////////////
 		/////////////// Predicate and Lambda expression
-		Child child1 = new Child(3);
-		Child child2 = new Child(2);
-		Child child3 = new Child(7);
-		Child child4 = new Child(10);
-		Child child5 = new Child(6);
-		Child child6 = new Child(9);
-		Child child7 = new Child(8);
+//		Child child1 = new Child(3);
+//		Child child2 = new Child(2);
+//		Child child3 = new Child(7);
+//		Child child4 = new Child(10);
+//		Child child5 = new Child(6);
+//		Child child6 = new Child(9);
+//		Child child7 = new Child(8);
+//		
+//		List<Child> children = Arrays.asList(new Child[] {child1, child2, child3, child4, child5, child6, child7 });
+//		
+//		List<Child> filtered = ChildPredicates.filterChilds(children, ChildPredicates.filterByAge(8));
+//		
+//		for (Child  x : filtered) {
+//			System.out.println(x.getAge());
+//			
+//		}
 		
-		List<Child> children = Arrays.asList(new Child[] {child1, child2, child3, child4, child5, child6, child7 });
+/////////////////////////////////////////////////////////////////
+	////////////////// Thread 
 		
-		List<Child> filtered = ChildPredicates.filterChilds(children, ChildPredicates.filterByAge(8));
+//		HelloRunner r = new HelloRunner();
+//		Thread tr = new Thread(r);
+//		tr.start();
 		
-		for (Child  x : filtered) {
-			System.out.println(x.getAge());
-			
-		}
+///////////////////////////////// Deadlock example (Multi-threading)
+		
+		Thread1 tr1 = new Thread1();
+		Thread2 tr2 = new Thread2();
+		
+		tr1.start();
+		tr2.start();
+		
 		
 		
 		
