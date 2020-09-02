@@ -13,10 +13,14 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.function.BiPredicate;
+import java.util.function.IntBinaryOperator;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -573,17 +577,108 @@ public class Hello {
 		
 ///////////////////////////////// Deadlock example (Multi-threading)
 		
-		Thread1 tr1 = new Thread1();
-		Thread2 tr2 = new Thread2();
+//		Thread1 tr1 = new Thread1();
+//		Thread2 tr2 = new Thread2();
+//		
+//		tr1.start();
+//		tr2.start();
 		
-		tr1.start();
-		tr2.start();
+/////////////////// linkedList & Iterator
+//		List<String> names = new LinkedList<>();
+//		
+//		names.add("One");
+//		names.add("Two");
+//		names.add("Three");
+//		names.add("Four");
+//		
+//		java.util.Iterator<String> namesIterator = names.iterator();
+//		
+//		while(namesIterator.hasNext()) {
+//			System.out.println(namesIterator.next());
+//		}
 		
+//////////////////// Predicate (functional interface) and lambda expression
+//		List<String>  nameList = Arrays.asList("Maria" ,"Lea", "John", "Sam", "May");
+//		System.out.println("Print all names begin with letter M ");
+//		checkList(nameList, (name -> name.startsWith("M")));
+//		
+//		System.out.println("Print all names end with letter A ");
+//		checkList(nameList, (name -> name.endsWith("a")));
+//		
 		
+//////////////////////////////////////Method reference :how to invoke static and non-static methods 
+		////////// using Method reference ::
+//		
+//		Hello m2 = new Hello();
+//		m2.operation(Hello :: multiply, 13, 13);// calling a static method
+//		m2.operation(m2 :: add, 235, 91); // calling non-static method
+//		
+//		
 		
+///////////////////////// method reference 
+//		String[] names = {"maria", "june" ,"flower" , "lion", "bread" ,"ice-cream"};
+//		System.out.println("Before sorting");
+//		System.out.println(Arrays.toString(names));
+//		// sorting the array using method reference
+//		Arrays.sort(names, String :: compareToIgnoreCase);
+//		System.out.println("After sorting");
+//		System.out.println(Arrays.toString(names));
+//	
 		
+///////////////////// Method Reference vs lambda
+//		List<Integer> list = Arrays.asList(24, 7, 13, 45,2, 65);
+//		
+//		findNumbers(list, new BiPredicate<Integer, Integer>(){
+//			public boolean test(Integer num1, Integer num2) {
+//				return Hello.isMoreThanFifty(num1, num2);
+//				
+//			}
+//			
+//		});
+//		
+//		// using lambda expression
+//		
+//		findNumbers(list, (num1, num2) -> Hello.isMoreThanFifty(num1, num2));
+//		// using a method reference
+//		
+//		findNumbers(list, Hello :: isMoreThanFifty);
+//		
+///////////////////////// 	binary search and algorithm
+//		Hello binarySearch = new Hello();
+//		System.out.println(binarySearch.binarySearch(4, new int[]{1,2,3,4,5,6,7,8,9,10}));
+//		System.out.println(binarySearch.binarySearch(0, new int[]{1,2,3,4,5,6,7,8,9,10}));
+//		System.out.println(binarySearch.binarySearch(8, new int[]{1,2,3,4,5,6,7,8,9,10}));
 		
+///////////////////////// Binary search and algorithm 
+//		Hello findPrimeFactors = new Hello();
+//		System.out.println(findPrimeFactors.primeFactors(21000L));
+//		System.out.println(findPrimeFactors.primeFactors(7803021L));
 		
+//////////////////// Bubble sorting (easy but slow)
+//		BubbleSort bubbleSort = new BubbleSort();
+//		int[] list1 = new int[] {3,6,2,4,0,7,10,8,5,1,9};
+//		int[] list2 = new int[] {3,6,2,4,0,7,10,8,5,1,9};
+//		int[] list3 = new int[] {3,6,2,4,0,7,10,8,5,1,9};
+//		bubbleSort.sort(list1);
+//		bubbleSort.sortImprovement1(list2);
+//		bubbleSort.sortImprovement2(list3);
+//		
+//		System.out.println(Arrays.toString(list1));
+//		System.out.println(Arrays.toString(list2));
+//		System.out.println(Arrays.toString(list3));
+		
+/////////////////////////// Quick sort
+//		QuickSort quickSort = new QuickSort();
+//		int[] numbers = new int[] {3,6,2,4,0,7,10,8,5,1,9};
+//		quickSort.sort(numbers);
+//		System.out.println(Arrays.toString(numbers));
+//		
+		
+/////////////////////////////// Merge Sort
+		MergeSort mergeSort = new MergeSort();
+		int[] numbers = new int[] {3,6,2,4,0,7,10,8,5,1,9};
+		mergeSort.mergeSort(numbers);
+		System.out.println(Arrays.toString(numbers));
 		
 		
 		
@@ -601,7 +696,59 @@ public class Hello {
 //			System.out.println("You can drive!");
 //		}
 //	}
+	
+///////////////// method to use with the predicate / lambda example above
+//	public static void checkList(List<String> nameList, Predicate<String> p) {
+//		for(String s: nameList) {
+//			if(p.test(s)) {
+//				System.out.print(s + " ");
+//			}
+//		}
+//		System.out.println();
+//	}
+	
+///////////////////////Method reference
+//	public static int multiply(int x, int y) {
+//		return x * y;
+//	}
+//	public  int add(int x, int y) {
+//		return x + y;
+//	}
+//	public void operation(IntBinaryOperator operator, int a, int b) {
+//		System.out.println(operator.applyAsInt(a,b ));
+//		
+//	}
+	
+/////////////////////////////////////// Binary search and algorithm O(logn)
+//	public boolean binarySearch(int x, int[] sortedNumbers) {
+//		int end = sortedNumbers.length - 1;
+//		int start = 0;
+//		
+//		while(start <= end) {
+//			int mid = (end - start) /2 + start;
+//			if(sortedNumbers[mid] == x) return true;
+//			else if (sortedNumbers[mid] > x) end = mid - 1;
+//			else start = mid + 1;
+//		}
+//		return false;
+//	}
+///////////////////////////////////	Binary search and algorithm O(k^n)
+	
+	public List<Long> primeFactors(long x) {
+		ArrayList<Long> result = new ArrayList<>();
+		long factor = 2;
+		while(x > 1) {
+			if(x % factor == 0) {
+				result.add(factor);
+				x /= factor;
+			}
+			else {
+				factor += 1;
+			}
+		}
+		return result;
 
+	}
 	
 
 }
